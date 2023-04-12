@@ -21,8 +21,8 @@ const LikeCommentCountLayout = styled.div`
   align-items: center;
   height: 42px;
   padding: 0 16px;
-  color: #65676b;
   font-size: 15px;
+  color: #65676b;
 
   & > div {
     display: flex;
@@ -32,9 +32,9 @@ const LikeCommentCountLayout = styled.div`
 
 const Count = styled.p`
   display: inline-block;
-  color: #65676b;
-  font-size: 15px;
   margin-left: 5px;
+  font-size: 15px;
+  color: #65676b;
   line-height: 18px;
 `;
 

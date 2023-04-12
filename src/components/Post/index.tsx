@@ -53,8 +53,8 @@ const PageLayout = styled.div`
 
 const PostLayout = styled.div`
   width: 680px;
-  border-radius: 12px;
-  background-color: #ffffff;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.17);
   margin-bottom: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.17);
 `;

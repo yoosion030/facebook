@@ -18,7 +18,7 @@ export default Content;
 
 const ContentSection = styled.section`
   padding: 12px 16px;
-  color: #050505;
   font-size: 15px;
+  color: #050505;
   line-height: 1.3;
 `;

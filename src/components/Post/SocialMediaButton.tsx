@@ -41,18 +41,18 @@ const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
 export default SocialMediaButton;
 
 const SocialMediaButtonLayout = styled.div`
-  height: 44px;
   display: flex;
   align-items: center;
+  height: 44px;
   padding: 0 16px;
   border-top: 1px solid #cccccc;
 `;
 
 const IconBox = styled.div`
-  width: 50%;
   display: flex;
   justify-content: center;
   gap: 10px;
+  width: 50%;
   font-size: 15px;
   color: #65676b;
   cursor: pointer;

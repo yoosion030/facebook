@@ -22,21 +22,21 @@ export default Profile;
 const ProtileSection = styled.section`
   display: flex;
   gap: 10px;
-  padding: 12px 16px 0;
   height: 40px;
+  padding: 12px 16px 0;
   box-sizing: content-box;
 `;
 
 const Name = styled.h3`
+  margin: 5px 0;
+  font-size: 15px;
   font-weight: 900;
   color: #050505;
-  font-size: 15px;
-  margin: 5px 0;
 `;
 
 const Date = styled.p`
   display: block;
-  color: #65676b;
-  font-size: 13px;
   margin-top: auto;
+  font-size: 13px;
+  color: #65676b;
 `;
