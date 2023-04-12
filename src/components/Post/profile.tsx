@@ -1,12 +1,17 @@
 import styled from '@emotion/styled';
 
-const Profile = () => {
+interface ProfileProps {
+  profileImage: string;
+  name: string;
+  createdAt: string;
+}
+const Profile = ({ profileImage, name, createdAt }: ProfileProps) => {
   return (
     <ProtileSection>
-      <img src='https://image.rocketpunch.com/company/174836/2pmlab_logo_1658207689.png?s=40x40&t=inside' />
+      <img src={profileImage} />
       <div>
-        <Name>오후두시랩</Name>
-        <Date>4월 3일 오전 12:36 </Date>
+        <Name>{name}</Name>
+        <Date>{createdAt}</Date>
       </div>
     </ProtileSection>
   );
