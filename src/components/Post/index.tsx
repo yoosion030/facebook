@@ -1,8 +1,5 @@
 import styled from '@emotion/styled';
-import Content from './content';
-import Profile from './profile';
-import SocialMediaButton from './SocialMediaButton';
-import LikeCommentCount from './likeCommentCount';
+import { Profile, Content, LikeCommentCount, SocialMediaButton } from 'components';
 import { PostType } from 'types/Post';
 
 const Post = () => {
