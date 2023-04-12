@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Content from './content';
 import Profile from './profile';
+import SocialMediaButton from './SocialMediaButton';
 
 const Post = () => {
   return (
@@ -8,6 +9,7 @@ const Post = () => {
       <PostLayout>
         <Profile />
         <Content />
+        <SocialMediaButton />
       </PostLayout>
     </PageLayout>
   );
