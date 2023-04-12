@@ -20,7 +20,7 @@ const Content = () => {
 
 export default Content;
 
-export const ContentSection = styled.section`
+const ContentSection = styled.section`
   padding: 12px 16px;
   color: #050505;
   font-size: 15px;
