@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <S.Header>
       <I.Logo />
-      <I.ProfileIcon />
+      <I.ProfileIcon width={40} height={40} />
     </S.Header>
   );
 };
