@@ -34,7 +34,7 @@ const Post = () => {
           <Profile profileImage={post.profileImage} name={post.name} createdAt={post.createdAt} />
           <Content content={post.content} contentImage={post.contentImage ?? ''} />
           <LikeCommentCount />
-          <SocialMediaButton />
+          <SocialMediaButton id={post.id} />
         </PostLayout>
       ))}
     </PageLayout>

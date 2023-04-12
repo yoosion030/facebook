@@ -1,10 +1,21 @@
 import styled from '@emotion/styled';
 import * as I from 'assets';
+import getLikePosts from 'utils/getLikePosts';
 
-const SocialMediaButton = () => {
+interface SocialMediaButtonProps {
+  id: number;
+}
+
+const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
+  const handleLike = () => {
+    const likePosts = getLikePosts();
+    const updatedLikePosts = [...likePosts, id.toString()];
+    window.localStorage.setItem('likePosts', JSON.stringify(updatedLikePosts));
+  };
+
   return (
-    <SocialMediaButtonList>
-      <IconBox>
+    <SocialMediaButtonLayout>
+      <IconBox onClick={handleLike}>
         <I.LikeIcon />
         <p>좋아요</p>
       </IconBox>
@@ -12,13 +23,13 @@ const SocialMediaButton = () => {
         <I.CommentIcon />
         <p>댓글 달기</p>
       </IconBox>
-    </SocialMediaButtonList>
+    </SocialMediaButtonLayout>
   );
 };
 
 export default SocialMediaButton;
 
-const SocialMediaButtonList = styled.div`
+const SocialMediaButtonLayout = styled.div`
   height: 44px;
   display: flex;
   align-items: center;
