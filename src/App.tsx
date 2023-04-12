@@ -1,5 +1,12 @@
+import { Header, Post } from 'components';
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <Header />
+      <Post />
+    </>
+  );
 }
 
 export default App;
