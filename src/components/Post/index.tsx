@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Profile, Content, LikeCommentCount, SocialMediaButton } from 'components';
+import { Profile, Content, LikeCommentCount, SocialMediaButton, Comment } from 'components';
 import { PostType } from 'types/Post';
 
 const Post = () => {
@@ -32,6 +32,7 @@ const Post = () => {
           <Content content={post.content} contentImage={post.contentImage ?? ''} />
           <LikeCommentCount />
           <SocialMediaButton id={post.id} />
+          <Comment />
         </PostLayout>
       ))}
     </PageLayout>
