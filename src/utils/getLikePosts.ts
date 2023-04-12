@@ -1,5 +1,5 @@
 const getLikePosts = () => {
-  let likePosts = [];
+  let likePosts: string[] = [];
 
   const storedLikePosts = window.localStorage.getItem('likePosts');
   if (storedLikePosts === null) {

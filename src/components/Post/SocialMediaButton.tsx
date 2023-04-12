@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import * as I from 'assets';
+import { useState } from 'react';
 import getLikePosts from 'utils/getLikePosts';
 
 interface SocialMediaButtonProps {
@@ -7,16 +8,26 @@ interface SocialMediaButtonProps {
 }
 
 const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
+  const stringId = id.toString();
+  const likePosts = getLikePosts();
+  const [isLike, setIsLike] = useState<boolean>(likePosts.includes(stringId));
+
   const handleLike = () => {
-    const likePosts = getLikePosts();
-    const updatedLikePosts = [...likePosts, id.toString()];
+    let updatedLikePosts: string[];
+    if (isLike) {
+      updatedLikePosts = likePosts.filter(v => v !== stringId);
+    } else {
+      updatedLikePosts = [...likePosts, stringId];
+    }
+
     window.localStorage.setItem('likePosts', JSON.stringify(updatedLikePosts));
+    setIsLike(!isLike);
   };
 
   return (
     <SocialMediaButtonLayout>
       <IconBox onClick={handleLike}>
-        <I.LikeIcon />
+        {isLike ? <I.BlueLikeIcon /> : <I.LikeIcon />}
         <p>좋아요</p>
       </IconBox>
       <IconBox>
