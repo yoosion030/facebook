@@ -1,8 +1,9 @@
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import * as I from 'assets';
-import { useState } from 'react';
 import getStoredArray from 'utils/getStoredArray';
 import setLocalStorageArray from 'utils/setLocalStorageArray';
+import { localStorageKeys } from 'constant/localStorageKeys';
 
 interface SocialMediaButtonProps {
   id: number;
@@ -10,15 +11,17 @@ interface SocialMediaButtonProps {
 
 const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
   const stringId = id.toString();
-  const [isLike, setIsLike] = useState<boolean>(getStoredArray('likePosts').includes(stringId));
+  const [isLike, setIsLike] = useState<boolean>(
+    getStoredArray(localStorageKeys.like).includes(stringId),
+  );
 
   const handleLike = () => {
-    const likePosts = getStoredArray('likePosts');
+    const likePosts = getStoredArray(localStorageKeys.like);
     const updatedLikePosts: string[] = isLike
       ? likePosts.filter(v => v !== stringId)
       : [...likePosts, stringId];
 
-    setLocalStorageArray('likePosts', updatedLikePosts);
+    setLocalStorageArray(localStorageKeys.like, updatedLikePosts);
     setIsLike(!isLike);
   };
 
