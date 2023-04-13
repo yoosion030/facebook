@@ -1,5 +1,5 @@
 const getStoredArray = (key: string) => {
-  let storedArray: string[] = [];
+  let storedArray = [];
 
   const storedData = window.localStorage.getItem(key);
   if (storedData !== null) {
