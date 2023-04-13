@@ -1,19 +1,26 @@
 import styled from '@emotion/styled';
 import * as I from 'assets';
+import { CommentContext } from 'context/CommentProvider';
+import { useContext } from 'react';
 
 interface CommentProps {
-  content: string;
+  comment: string;
+  commentId: number;
 }
 
-const Comment = ({ content }: CommentProps) => {
+const Comment = ({ comment, commentId }: CommentProps) => {
+  const { deleteComment } = useContext(CommentContext);
+  const handleDeleteComment = () => {
+    deleteComment(commentId, 0);
+  };
   return (
     <CommentLayout>
       <I.ProfileIcon width={32} height={32} />
       <div>
-        <ContentSection>{content}</ContentSection>
+        <ContentSection>{comment}</ContentSection>
         <CommentAction>
           <Reply>답글 달기</Reply>
-          <Delete>삭제</Delete>
+          <Delete onClick={handleDeleteComment}>삭제</Delete>
         </CommentAction>
       </div>
     </CommentLayout>

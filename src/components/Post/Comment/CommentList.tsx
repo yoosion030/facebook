@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import * as I from 'assets';
 import Comment from './Comment';
 import { CommentContext } from 'context/CommentProvider';
-import setLocalStorageArray from 'utils/setLocalStorageArray';
 
 interface CommentProps {
   id: number;
@@ -32,8 +31,7 @@ const CommentList = ({ id }: CommentProps) => {
     event.preventDefault();
     textarea.current.value = '';
     textarea.current.style.height = '32px';
-    addComment(comment, comments.length);
-    setLocalStorageArray(id.toString(), [{ comment, commentId: comments.length }, ...comments]);
+    addComment(comment, comments.length, id);
   };
 
   return (
@@ -48,8 +46,8 @@ const CommentList = ({ id }: CommentProps) => {
           ref={textarea}
         />
 
-        {comments.map((comment, i) => (
-          <Comment key={i} content={comment.comment} index={i} />
+        {comments.map(comment => (
+          <Comment key={comment.commentId} {...comment} />
         ))}
       </CommentForm>
     </CommentLayout>
