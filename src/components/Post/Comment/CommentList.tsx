@@ -32,8 +32,8 @@ const CommentList = ({ id }: CommentProps) => {
     event.preventDefault();
     textarea.current.value = '';
     textarea.current.style.height = '32px';
-    addComment(comment);
-    setLocalStorageArray(id.toString(), [{ comment }, ...comments]);
+    addComment(comment, comments.length);
+    setLocalStorageArray(id.toString(), [{ comment, commentId: comments.length }, ...comments]);
   };
 
   return (

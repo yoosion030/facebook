@@ -4,5 +4,6 @@ interface DetailCommentType {
 
 export interface CommentType {
   comment: string;
+  commentId: number;
   detail?: DetailCommentType[];
 }

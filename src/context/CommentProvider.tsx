@@ -6,13 +6,14 @@ type ActionType =
   | {
       type: 'ADD_TODO';
       comment: string;
+      commentId: number;
     }
   | { type: 'DELETE_TODO'; id: number };
 
 function reducer(state: CommentType[], action: ActionType): CommentType[] {
   switch (action.type) {
     case 'ADD_TODO': {
-      return [{ comment: action.comment }, ...state];
+      return [{ comment: action.comment, commentId: action.commentId }, ...state];
     }
     case 'DELETE_TODO': {
       return [];
@@ -22,7 +23,7 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
 
 interface ContextType {
   comments: CommentType[];
-  addComment: (comment: string) => void;
+  addComment: (comment: string, commentId: number) => void;
   deleteComment: (id: number) => void;
 }
 
@@ -39,8 +40,8 @@ export const CommentContext = createContext<ContextType>({
 function CommentProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(reducer, defaultValue);
 
-  const addComment = (comment: string): void => {
-    dispatch({ type: 'ADD_TODO', comment });
+  const addComment = (comment: string, commentId: number): void => {
+    dispatch({ type: 'ADD_TODO', comment, commentId });
   };
 
   const deleteComment = (id: number): void => {
