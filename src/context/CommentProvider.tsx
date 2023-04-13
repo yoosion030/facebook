@@ -15,7 +15,7 @@ type ActionType =
 function reducer(state: CommentType[], action: ActionType): CommentType[] {
   switch (action.type) {
     case 'ADD_COMMENT': {
-      const addData = [...state, { comment: action.comment, commentId: action.commentId }];
+      const addData = [{ comment: action.comment, commentId: action.commentId }, ...state];
       setLocalStorageArray(`${action.postId}`, addData);
       return addData;
     }
