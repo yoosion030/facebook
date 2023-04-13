@@ -8,20 +8,20 @@ type ActionType =
       type: 'ADD_COMMENT';
       comment: string;
       commentId: number;
-      postId: number;
+      postId: string;
     }
-  | { type: 'DELETE_COMMENT'; commentId: number; postId: number };
+  | { type: 'DELETE_COMMENT'; commentId: number; postId: string };
 
 function reducer(state: CommentType[], action: ActionType): CommentType[] {
   switch (action.type) {
     case 'ADD_COMMENT': {
       const addData = [...state, { comment: action.comment, commentId: action.commentId }];
-      setLocalStorageArray(`${action.postId.toString()}`, addData);
+      setLocalStorageArray(`${action.postId}`, addData);
       return addData;
     }
     case 'DELETE_COMMENT': {
       const deleteData = [...state].filter(v => v.commentId !== action.commentId);
-      setLocalStorageArray(`${action.postId.toString()}`, deleteData);
+      setLocalStorageArray(`${action.postId}`, deleteData);
       return deleteData;
     }
     default: {
@@ -46,8 +46,8 @@ export const CommentContext = createContext<ContextType>({
   },
 });
 
-function CommentProvider({ children, postId }: { children: React.ReactNode; postId: number }) {
-  const [state, dispatch] = useReducer(reducer, getStoredArray(`${postId.toString()}`));
+function CommentProvider({ children, postId }: { children: React.ReactNode; postId: string }) {
+  const [state, dispatch] = useReducer(reducer, getStoredArray(`${postId}`));
 
   const addComment = (comment: string, commentId: number): void => {
     dispatch({ type: 'ADD_COMMENT', comment, commentId, postId });

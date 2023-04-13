@@ -5,7 +5,7 @@ import Comment from './Comment';
 import { CommentContext } from 'context/CommentProvider';
 
 interface CommentProps {
-  id: number;
+  id: string;
 }
 
 const CommentList = ({ id }: CommentProps) => {

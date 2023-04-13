@@ -27,16 +27,23 @@ const Post = () => {
 
   return (
     <PageLayout>
-      {posts.map(post => (
-        <CommentProvider postId={post.id} key={post.id}>
-          <PostLayout>
-            <Profile profileImage={post.profileImage} name={post.name} createdAt={post.createdAt} />
-            <Content content={post.content} contentImage={post.contentImage ?? ''} />
-            <SocialMediaButton id={post.id} />
-            <CommentList id={post.id} />
-          </PostLayout>
-        </CommentProvider>
-      ))}
+      {posts.map(post => {
+        const stringId = post.id.toString();
+        return (
+          <CommentProvider postId={stringId} key={post.id}>
+            <PostLayout>
+              <Profile
+                profileImage={post.profileImage}
+                name={post.name}
+                createdAt={post.createdAt}
+              />
+              <Content content={post.content} contentImage={post.contentImage ?? ''} />
+              <SocialMediaButton id={stringId} />
+              <CommentList id={stringId} />
+            </PostLayout>
+          </CommentProvider>
+        );
+      })}
     </PageLayout>
   );
 };
