@@ -32,7 +32,7 @@ const Post = () => {
           <Content content={post.content} contentImage={post.contentImage ?? ''} />
           <LikeCommentCount />
           <SocialMediaButton id={post.id} />
-          <Comment />
+          <Comment id={post.id} />
         </PostLayout>
       ))}
     </PageLayout>

@@ -1,25 +1,38 @@
 import styled from '@emotion/styled';
 import * as I from 'assets';
-import { useRef } from 'react';
+import { useState, useRef } from 'react';
+import getStoredArray from 'utils/getStoredArray';
 
-const Comment = () => {
+interface CommentProps {
+  id: number;
+}
+
+const Comment = ({ id }: CommentProps) => {
   const textarea = useRef<HTMLTextAreaElement>(null);
+  const [comments, setComments] = useState<string[]>(getStoredArray(id.toString()));
+
   const handleResizeHeight = () => {
     if (textarea.current) {
       textarea.current.style.height = textarea.current.scrollHeight + 'px';
     }
   };
 
-  const handleComment = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    event.preventDefault();
-    handleResizeHeight();
-  };
-
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
       event.preventDefault();
       handleComment(event);
     }
+  };
+
+  const handleComment = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    const comment = textarea.current?.value;
+    if (!comment) return;
+    event.preventDefault();
+    textarea.current.value = '';
+    textarea.current.style.height = '32px';
+    const newComments = [...comments, comment];
+    window.localStorage.setItem(id.toString(), JSON.stringify(newComments));
+    setComments(newComments);
   };
 
   return (
@@ -33,6 +46,9 @@ const Comment = () => {
           onKeyDown={handleKeyDown}
           ref={textarea}
         />
+        {comments.map((comment, i) => (
+          <div key={i}>{comment}</div>
+        ))}
       </CommentForm>
     </CommentLayout>
   );
