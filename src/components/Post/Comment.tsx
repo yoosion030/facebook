@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import * as I from 'assets';
 import { useState, useRef } from 'react';
 import getStoredArray from 'utils/getStoredArray';
+import setLocalStorageArray from 'utils/setLocalStorageArray';
 
 interface CommentProps {
   id: number;
@@ -31,7 +32,7 @@ const Comment = ({ id }: CommentProps) => {
     textarea.current.value = '';
     textarea.current.style.height = '32px';
     const newComments = [...comments, comment];
-    window.localStorage.setItem(id.toString(), JSON.stringify(newComments));
+    setLocalStorageArray(id.toString(), newComments);
     setComments(newComments);
   };
 

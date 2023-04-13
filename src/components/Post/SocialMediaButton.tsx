@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import * as I from 'assets';
 import { useState } from 'react';
 import getStoredArray from 'utils/getStoredArray';
+import setLocalStorageArray from 'utils/setLocalStorageArray';
 
 interface SocialMediaButtonProps {
   id: number;
@@ -13,14 +14,11 @@ const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
 
   const handleLike = () => {
     const likePosts = getStoredArray('likePosts');
-    let updatedLikePosts: string[];
-    if (isLike) {
-      updatedLikePosts = likePosts.filter(v => v !== stringId);
-    } else {
-      updatedLikePosts = [...likePosts, stringId];
-    }
+    const updatedLikePosts: string[] = isLike
+      ? likePosts.filter(v => v !== stringId)
+      : [...likePosts, stringId];
 
-    window.localStorage.setItem('likePosts', JSON.stringify(updatedLikePosts));
+    setLocalStorageArray('likePosts', updatedLikePosts);
     setIsLike(!isLike);
   };
 
