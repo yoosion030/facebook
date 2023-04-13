@@ -1,18 +1,17 @@
-import { useState, useRef } from 'react';
+import { useRef, useContext } from 'react';
 import styled from '@emotion/styled';
 import * as I from 'assets';
 import Comment from './Comment';
-import getStoredArray from 'utils/getStoredArray';
+import { CommentContext } from 'context/CommentProvider';
 import setLocalStorageArray from 'utils/setLocalStorageArray';
-import { CommentType } from 'types/Comment';
 
 interface CommentProps {
   id: number;
 }
 
 const CommentList = ({ id }: CommentProps) => {
+  const { comments, addComment } = useContext(CommentContext);
   const textarea = useRef<HTMLTextAreaElement>(null);
-  const [comments, setComments] = useState<CommentType[]>(getStoredArray(id.toString()));
 
   const handleResizeHeight = () => {
     if (textarea.current) {
@@ -33,9 +32,8 @@ const CommentList = ({ id }: CommentProps) => {
     event.preventDefault();
     textarea.current.value = '';
     textarea.current.style.height = '32px';
-    const newComments = [{ comment: comment }, ...comments];
-    setLocalStorageArray(id.toString(), newComments);
-    setComments(newComments);
+    addComment(comment);
+    setLocalStorageArray(id.toString(), [{ comment }, ...comments]);
   };
 
   return (
@@ -49,8 +47,9 @@ const CommentList = ({ id }: CommentProps) => {
           onKeyDown={handleKeyDown}
           ref={textarea}
         />
+
         {comments.map((comment, i) => (
-          <Comment key={i} content={comment.comment} />
+          <Comment key={i} content={comment.comment} index={i} />
         ))}
       </CommentForm>
     </CommentLayout>
