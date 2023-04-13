@@ -11,7 +11,7 @@ interface CommentProps {
 const Comment = ({ comment, commentId }: CommentProps) => {
   const { deleteComment } = useContext(CommentContext);
   const handleDeleteComment = () => {
-    deleteComment(commentId, 0);
+    deleteComment(commentId);
   };
   return (
     <CommentLayout>

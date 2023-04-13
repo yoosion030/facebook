@@ -31,7 +31,7 @@ const CommentList = ({ id }: CommentProps) => {
     event.preventDefault();
     textarea.current.value = '';
     textarea.current.style.height = '32px';
-    addComment(comment, comments.length, id);
+    addComment(comment, comments.length);
   };
 
   return (
