@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import * as I from 'assets';
 import { useState } from 'react';
-import getLikePosts from 'utils/getLikePosts';
+import getStoredArray from 'utils/getStoredArray';
 
 interface SocialMediaButtonProps {
   id: number;
@@ -9,10 +9,10 @@ interface SocialMediaButtonProps {
 
 const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
   const stringId = id.toString();
-  const likePosts = getLikePosts();
-  const [isLike, setIsLike] = useState<boolean>(likePosts.includes(stringId));
+  const [isLike, setIsLike] = useState<boolean>(getStoredArray('likePosts').includes(stringId));
 
   const handleLike = () => {
+    const likePosts = getStoredArray('likePosts');
     let updatedLikePosts: string[];
     if (isLike) {
       updatedLikePosts = likePosts.filter(v => v !== stringId);
