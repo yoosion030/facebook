@@ -11,7 +11,10 @@ const Comment = ({ content }: CommentProps) => {
       <I.ProfileIcon width={32} height={32} />
       <div>
         <ContentSection>{content}</ContentSection>
-        <Reply>답글 달기</Reply>
+        <CommentAction>
+          <Reply>답글 달기</Reply>
+          <Delete>삭제</Delete>
+        </CommentAction>
       </div>
     </CommentLayout>
   );
@@ -25,9 +28,8 @@ const CommentLayout = styled.div`
   margin: 20px 0;
 `;
 
-export const ContentSection = styled.section`
+const ContentSection = styled.section`
   padding: 12px 12px;
-
   font-size: 15px;
   color: #050505;
   background-color: #f0f2f5;
@@ -35,11 +37,24 @@ export const ContentSection = styled.section`
   white-space: pre-wrap;
 `;
 
-export const Reply = styled.p`
-  font-size: 12px;
-  color: #65676b;
-  font-weight: 700;
-  line-height: 20px;
-  cursor: pointer;
+const CommentAction = styled.div`
+  display: flex;
+  gap: 10px;
+  height: 20px;
   margin-left: 12px;
+  font-size: 12px;
+
+  p {
+    font-weight: 700;
+    line-height: 20px;
+    cursor: pointer;
+  }
+`;
+
+const Reply = styled.p`
+  color: #65676b;
+`;
+
+const Delete = styled.p`
+  color: #ff0000;
 `;
