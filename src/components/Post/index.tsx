@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Profile, Content, SocialMediaButton, Comment } from 'components';
+import { Profile, Content, SocialMediaButton, CommentList } from 'components';
 import { PostType } from 'types/Post';
 
 const Post = () => {
@@ -30,9 +30,8 @@ const Post = () => {
         <PostLayout key={post.id}>
           <Profile profileImage={post.profileImage} name={post.name} createdAt={post.createdAt} />
           <Content content={post.content} contentImage={post.contentImage ?? ''} />
-
           <SocialMediaButton id={post.id} />
-          <Comment id={post.id} />
+          <CommentList id={post.id} />
         </PostLayout>
       ))}
     </PageLayout>

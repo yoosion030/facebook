@@ -3,12 +3,13 @@ import * as I from 'assets';
 import { useState, useRef } from 'react';
 import getStoredArray from 'utils/getStoredArray';
 import setLocalStorageArray from 'utils/setLocalStorageArray';
+import Comment from './Comment';
 
 interface CommentProps {
   id: number;
 }
 
-const Comment = ({ id }: CommentProps) => {
+const CommentList = ({ id }: CommentProps) => {
   const textarea = useRef<HTMLTextAreaElement>(null);
   const [comments, setComments] = useState<string[]>(getStoredArray(id.toString()));
 
@@ -31,7 +32,7 @@ const Comment = ({ id }: CommentProps) => {
     event.preventDefault();
     textarea.current.value = '';
     textarea.current.style.height = '32px';
-    const newComments = [...comments, comment];
+    const newComments = [comment, ...comments];
     setLocalStorageArray(id.toString(), newComments);
     setComments(newComments);
   };
@@ -48,14 +49,14 @@ const Comment = ({ id }: CommentProps) => {
           ref={textarea}
         />
         {comments.map((comment, i) => (
-          <div key={i}>{comment}</div>
+          <Comment key={i} content={comment} />
         ))}
       </CommentForm>
     </CommentLayout>
   );
 };
 
-export default Comment;
+export default CommentList;
 
 const CommentLayout = styled.div`
   display: flex;
