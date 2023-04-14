@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import * as S from './style';
 import { Profile, Content, SocialMediaButton, CommentList } from 'components';
 import CommentProvider from 'context/CommentProvider';
 import { PostType } from 'types/Post';
@@ -26,12 +26,12 @@ const Post = () => {
   ];
 
   return (
-    <PageLayout>
+    <S.PageLayout>
       {posts.map(post => {
         const stringId = post.id.toString();
         return (
           <CommentProvider postId={stringId} key={post.id}>
-            <PostLayout>
+            <S.PostLayout>
               <Profile
                 profileImage={post.profileImage}
                 name={post.name}
@@ -40,28 +40,12 @@ const Post = () => {
               <Content content={post.content} contentImage={post.contentImage ?? ''} />
               <SocialMediaButton id={stringId} />
               <CommentList id={stringId} />
-            </PostLayout>
+            </S.PostLayout>
           </CommentProvider>
         );
       })}
-    </PageLayout>
+    </S.PageLayout>
   );
 };
 
 export default Post;
-
-const PageLayout = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 30px;
-`;
-
-const PostLayout = styled.div`
-  width: 680px;
-  margin-bottom: 30px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.17);
-`;

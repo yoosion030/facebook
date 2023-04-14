@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import styled from '@emotion/styled';
 import * as I from 'assets';
+import * as S from './style';
 import getStoredArray from 'utils/getStoredArray';
 import setLocalStorageArray from 'utils/setLocalStorageArray';
 import { localStorageKeys } from 'constant/localStorageKeys';
@@ -23,35 +23,17 @@ const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
   };
 
   return (
-    <SocialMediaButtonLayout>
-      <IconBox onClick={handleLike}>
+    <S.SocialMediaButtonLayout>
+      <S.IconBox onClick={handleLike}>
         {isLike ? <I.BlueLikeIcon /> : <I.LikeIcon />}
         <p>좋아요</p>
-      </IconBox>
-      <IconBox>
+      </S.IconBox>
+      <S.IconBox>
         <I.CommentIcon />
         <p>댓글 달기</p>
-      </IconBox>
-    </SocialMediaButtonLayout>
+      </S.IconBox>
+    </S.SocialMediaButtonLayout>
   );
 };
 
 export default SocialMediaButton;
-
-const SocialMediaButtonLayout = styled.div`
-  display: flex;
-  align-items: center;
-  height: 44px;
-  padding: 0 16px;
-  border-top: 1px solid #cccccc;
-`;
-
-const IconBox = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  width: 50%;
-  font-size: 15px;
-  color: #65676b;
-  cursor: pointer;
-`;

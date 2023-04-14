@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import * as S from './style';
 
 interface ContentProps {
   content: string;
@@ -8,17 +8,10 @@ interface ContentProps {
 const Content = ({ content, contentImage }: ContentProps) => {
   return (
     <>
-      <ContentSection>{content}</ContentSection>
+      <S.ContentSection>{content}</S.ContentSection>
       <img src={contentImage} />
     </>
   );
 };
 
 export default Content;
-
-const ContentSection = styled.section`
-  padding: 12px 16px;
-  font-size: 15px;
-  color: #050505;
-  line-height: 1.3;
-`;
