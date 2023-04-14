@@ -7,7 +7,6 @@ type ActionType =
   | {
       type: 'ADD_COMMENT';
       comment: string;
-      commentId: number;
       postId: string;
     }
   | { type: 'DELETE_COMMENT'; commentId: number; postId: string }
@@ -21,23 +20,23 @@ type ActionType =
 function reducer(state: CommentType[], action: ActionType): CommentType[] {
   switch (action.type) {
     case 'ADD_COMMENT': {
-      const addData = [
-        { comment: action.comment, commentId: action.commentId, replies: [] },
-        ...state,
-      ];
+      const commentId = state[0] ? state[0].commentId + 1 : 0;
+      const addData = [{ comment: action.comment, commentId, replies: [] }, ...state];
       setLocalStorageArray(`${action.postId}`, addData);
       return addData;
     }
+
     case 'DELETE_COMMENT': {
       const deleteData = [...state].filter(v => v.commentId !== action.commentId);
       setLocalStorageArray(`${action.postId}`, deleteData);
       return deleteData;
     }
+
     case 'ADD_REPLY': {
       const updatedComments = state.map(comment => {
         if (comment.commentId === action.commentId) {
           const updatedReply = {
-            replyId: !!comment.replies ? comment.replies.length : 0,
+            replyId: comment.replies ? comment.replies.length : 0,
             comment: action.reply,
           };
           return { ...comment, replies: [...(comment.replies || []), updatedReply] };
@@ -48,15 +47,12 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
       setLocalStorageArray(`${action.postId}`, updatedComments);
       return updatedComments;
     }
-    default: {
-      throw new Error(`Unhandled action type: ${action}`);
-    }
   }
 }
 
 interface ContextType {
   comments: CommentType[];
-  addComment: (comment: string, commentId: number) => void;
+  addComment: (comment: string) => void;
   deleteComment: (commentId: number) => void;
   addReply: (reply: string, commentId: number) => void;
 }
@@ -77,8 +73,8 @@ export const CommentContext = createContext<ContextType>({
 function CommentProvider({ children, postId }: { children: React.ReactNode; postId: string }) {
   const [state, dispatch] = useReducer(reducer, getStoredArray(`${postId}`));
 
-  const addComment = (comment: string, commentId: number): void => {
-    dispatch({ type: 'ADD_COMMENT', comment, commentId, postId });
+  const addComment = (comment: string): void => {
+    dispatch({ type: 'ADD_COMMENT', comment, postId });
   };
 
   const deleteComment = (commentId: number): void => {

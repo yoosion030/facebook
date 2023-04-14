@@ -25,7 +25,7 @@ const CommentInput = () => {
     event.preventDefault();
     textarea.current.value = '';
     textarea.current.style.height = '32px';
-    addComment(comment, comments.length);
+    addComment(comment);
   };
 
   return (
