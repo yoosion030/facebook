@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
-import styled from '@emotion/styled';
 import * as I from 'assets';
+import * as S from './style';
 import Comment from './Comment';
 import { CommentContext } from 'context/CommentProvider';
 
@@ -35,10 +35,10 @@ const CommentList = ({ id }: CommentProps) => {
   };
 
   return (
-    <CommentLayout>
+    <S.CommentListLayout>
       <I.ProfileIcon width={32} height={32} />
-      <CommentForm>
-        <CommentInput
+      <S.CommentForm>
+        <S.CommentInput
           placeholder='댓글을 입력하세요...'
           rows={1}
           onChange={handleResizeHeight}
@@ -49,31 +49,9 @@ const CommentList = ({ id }: CommentProps) => {
         {comments.map(comment => (
           <Comment key={comment.commentId} {...comment} />
         ))}
-      </CommentForm>
-    </CommentLayout>
+      </S.CommentForm>
+    </S.CommentListLayout>
   );
 };
 
 export default CommentList;
-
-const CommentLayout = styled.div`
-  display: flex;
-  gap: 10px;
-  padding: 8px 16px;
-  border-top: 1px solid #cccccc;
-`;
-
-const CommentForm = styled.form`
-  width: 100%;
-`;
-
-const CommentInput = styled.textarea`
-  width: 100%;
-  height: 32px;
-  padding: 8px 12px;
-  margin-bottom: 20px;
-  background-color: #f0f2f5;
-  border: none;
-  border-radius: 12px;
-  resize: none;
-`;

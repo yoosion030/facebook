@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
 import * as I from 'assets';
+import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
 import { useContext } from 'react';
 import ReplyList from './Reply/ReplyList';
@@ -15,57 +15,20 @@ const Comment = ({ comment, commentId }: CommentProps) => {
     deleteComment(commentId);
   };
   return (
-    <div>
-      <CommentLayout>
+    <>
+      <S.CommentLayout>
         <I.ProfileIcon width={32} height={32} />
         <div>
-          <ContentSection>{comment}</ContentSection>
-          <CommentAction>
-            <Reply>답글 달기</Reply>
-            <Delete onClick={handleDeleteComment}>삭제</Delete>
-          </CommentAction>
+          <S.ContentSection>{comment}</S.ContentSection>
+          <S.CommentAction>
+            <S.Reply>답글 달기</S.Reply>
+            <S.Delete onClick={handleDeleteComment}>삭제</S.Delete>
+          </S.CommentAction>
         </div>
-      </CommentLayout>
+      </S.CommentLayout>
       <ReplyList />
-    </div>
+    </>
   );
 };
 
 export default Comment;
-
-const CommentLayout = styled.div`
-  display: flex;
-  gap: 10px;
-  margin-bottom: 10px;
-`;
-
-const ContentSection = styled.section`
-  padding: 12px 12px;
-  font-size: 15px;
-  color: #050505;
-  background-color: #f0f2f5;
-  border-radius: 8px;
-  white-space: pre-wrap;
-`;
-
-const CommentAction = styled.div`
-  display: flex;
-  gap: 10px;
-  height: 20px;
-  margin-left: 12px;
-  font-size: 12px;
-
-  p {
-    font-weight: 700;
-    line-height: 20px;
-    cursor: pointer;
-  }
-`;
-
-const Reply = styled.p`
-  color: #65676b;
-`;
-
-const Delete = styled.p`
-  color: #ff0000;
-`;
