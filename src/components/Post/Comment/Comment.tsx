@@ -1,7 +1,7 @@
+import { useContext, useState } from 'react';
 import * as I from 'assets';
 import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
-import { useContext } from 'react';
 import ReplyList from './Reply/ReplyList';
 import { ReplyCommentType } from 'types/Comment';
 
@@ -12,6 +12,7 @@ interface CommentProps {
 }
 
 const Comment = ({ comment, commentId, replies = [] }: CommentProps) => {
+  const [isShowReply, setIsShowReply] = useState<boolean>(false);
   const { deleteComment } = useContext(CommentContext);
   const handleDeleteComment = () => {
     deleteComment(commentId);
@@ -23,12 +24,14 @@ const Comment = ({ comment, commentId, replies = [] }: CommentProps) => {
         <div>
           <S.ContentSection>{comment}</S.ContentSection>
           <S.CommentAction>
-            <S.Reply>답글 달기</S.Reply>
+            <S.Reply onClick={() => setIsShowReply(!isShowReply)}>
+              {replies.length === 0 ? '답글 달기' : `답글 ${replies.length}개`}
+            </S.Reply>
             <S.Delete onClick={handleDeleteComment}>삭제</S.Delete>
           </S.CommentAction>
         </div>
       </S.CommentLayout>
-      <ReplyList commentId={commentId} replies={replies} />
+      {isShowReply && <ReplyList commentId={commentId} replies={replies} />}
     </>
   );
 };
