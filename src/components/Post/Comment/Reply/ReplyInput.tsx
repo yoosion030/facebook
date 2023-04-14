@@ -1,5 +1,5 @@
 import { useRef, useContext } from 'react';
-
+import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
 
 const ReplyInput = ({ commentId }: any) => {
@@ -29,8 +29,8 @@ const ReplyInput = ({ commentId }: any) => {
   };
 
   return (
-    <textarea
-      placeholder='댓글을 입력하세요...'
+    <S.ReplyInput
+      placeholder='답글을 입력하세요...'
       rows={1}
       onChange={handleResizeHeight}
       onKeyDown={handleKeyDown}
