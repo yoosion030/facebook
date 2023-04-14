@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import * as I from 'assets';
 import { CommentContext } from 'context/CommentProvider';
 import { useContext } from 'react';
+import ReplyList from './Reply/ReplyList';
 
 interface CommentProps {
   comment: string;
@@ -14,16 +15,19 @@ const Comment = ({ comment, commentId }: CommentProps) => {
     deleteComment(commentId);
   };
   return (
-    <CommentLayout>
-      <I.ProfileIcon width={32} height={32} />
-      <div>
-        <ContentSection>{comment}</ContentSection>
-        <CommentAction>
-          <Reply>답글 달기</Reply>
-          <Delete onClick={handleDeleteComment}>삭제</Delete>
-        </CommentAction>
-      </div>
-    </CommentLayout>
+    <div>
+      <CommentLayout>
+        <I.ProfileIcon width={32} height={32} />
+        <div>
+          <ContentSection>{comment}</ContentSection>
+          <CommentAction>
+            <Reply>답글 달기</Reply>
+            <Delete onClick={handleDeleteComment}>삭제</Delete>
+          </CommentAction>
+        </div>
+      </CommentLayout>
+      <ReplyList />
+    </div>
   );
 };
 
@@ -32,7 +36,7 @@ export default Comment;
 const CommentLayout = styled.div`
   display: flex;
   gap: 10px;
-  margin: 20px 0;
+  margin-bottom: 10px;
 `;
 
 const ContentSection = styled.section`
