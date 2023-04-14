@@ -1,15 +1,18 @@
-import * as I from 'assets';
 import * as S from './style';
 import ReplyInput from './ReplyInput';
+import { ReplyCommentType } from 'types/Comment';
+import Reply from './Reply';
 
-const ReplyList = ({ commentId, replies }: any) => {
+interface ReplyListProps {
+  commentId: number;
+  replies: ReplyCommentType[];
+}
+
+const ReplyList = ({ commentId, replies }: ReplyListProps) => {
   return (
     <S.ReplyLayout>
-      {replies.map((reply: any) => (
-        <S.Reply key={reply.replyId}>
-          <I.ProfileIcon width={24} height={24} />
-          <S.ReplyComment>{reply.comment}</S.ReplyComment>
-        </S.Reply>
+      {replies.map(reply => (
+        <Reply key={reply.replyId} {...reply} />
       ))}
       <ReplyInput commentId={commentId} />
     </S.ReplyLayout>
