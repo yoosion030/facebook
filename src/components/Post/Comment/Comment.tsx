@@ -3,13 +3,15 @@ import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
 import { useContext } from 'react';
 import ReplyList from './Reply/ReplyList';
+import { ReplyCommentType } from 'types/Comment';
 
 interface CommentProps {
   comment: string;
   commentId: number;
+  replies?: ReplyCommentType[];
 }
 
-const Comment = ({ comment, commentId }: CommentProps) => {
+const Comment = ({ comment, commentId, replies = [] }: CommentProps) => {
   const { deleteComment } = useContext(CommentContext);
   const handleDeleteComment = () => {
     deleteComment(commentId);
@@ -26,7 +28,7 @@ const Comment = ({ comment, commentId }: CommentProps) => {
           </S.CommentAction>
         </div>
       </S.CommentLayout>
-      <ReplyList />
+      <ReplyList commentId={commentId} replies={replies} />
     </>
   );
 };
