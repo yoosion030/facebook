@@ -22,7 +22,7 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
   switch (action.type) {
     case 'ADD_COMMENT': {
       const addData = [
-        { comment: action.comment, commentId: action.commentId, reply: [] },
+        { comment: action.comment, commentId: action.commentId, replies: [] },
         ...state,
       ];
       setLocalStorageArray(`${action.postId}`, addData);
@@ -37,7 +37,7 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
       const updatedComments = state.map(comment => {
         if (comment.commentId === action.commentId) {
           const updatedReply = {
-            replyId: !!comment.replies ? comment.replies.length + 1 : 1,
+            replyId: !!comment.replies ? comment.replies.length : 0,
             comment: action.reply,
           };
           return { ...comment, replies: [...(comment.replies || []), updatedReply] };
