@@ -1,5 +1,20 @@
 import styled from '@emotion/styled';
 
+export const ReplyAnimation = styled.div`
+  animation: ReplyAnimation 0.3s ease;
+
+  @keyframes ReplyAnimation {
+    0% {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+`;
+
 export const Reply = styled.div`
   display: flex;
   gap: 12px;
