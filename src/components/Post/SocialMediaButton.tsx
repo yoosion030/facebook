@@ -27,8 +27,14 @@ const SocialMediaButton = ({ postId }: SocialMediaButtonProps) => {
   return (
     <S.SocialMediaButtonLayout>
       <S.IconBox onClick={handleLike}>
-        {isLike ? <I.BlueLikeIcon /> : <I.LikeIcon />}
-        <p>좋아요</p>
+        {isLike ? (
+          <S.LikeAnimation>
+            <I.BlueLikeIcon />
+          </S.LikeAnimation>
+        ) : (
+          <I.LikeIcon />
+        )}
+        <p style={{ color: isLike ? '#065fd4' : '#65676b' }}>좋아요</p>
       </S.IconBox>
       <S.IconBox>
         <I.CommentIcon />

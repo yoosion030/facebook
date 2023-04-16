@@ -58,7 +58,30 @@ export const IconBox = styled.div`
   justify-content: center;
   gap: 10px;
   width: 50%;
+  height: 15px;
   font-size: 15px;
   color: #65676b;
   cursor: pointer;
+`;
+
+export const LikeAnimation = styled.div`
+  animation: likeAnimation 0.7s;
+
+  @keyframes likeAnimation {
+    20% {
+      transform: scale(1.4);
+    }
+
+    50% {
+      transform: rotate(-25deg);
+    }
+
+    80% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: rotate(0deg);
+    }
+  }
 `;
