@@ -1,7 +1,7 @@
 import * as S from './style';
-import ReplyInput from './ReplyInput';
 import { ReplyCommentType } from 'types/Comment';
 import Reply from './Reply';
+import Input from 'components/Input';
 
 interface ReplyListProps {
   commentId: number;
@@ -14,7 +14,7 @@ const ReplyList = ({ commentId, replies }: ReplyListProps) => {
       {replies.map(reply => (
         <Reply key={reply.replyId} {...reply} />
       ))}
-      <ReplyInput commentId={commentId} />
+      <Input mode='reply' commentId={commentId} />
     </S.ReplyLayout>
   );
 };

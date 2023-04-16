@@ -3,7 +3,7 @@ import * as I from 'assets';
 import * as S from './style';
 import Comment from './Comment';
 import { CommentContext } from 'context/CommentProvider';
-import CommentInput from './CommentInput';
+import Input from 'components/Input';
 
 interface CommentProps {
   id: string;
@@ -16,7 +16,7 @@ const CommentList = ({ id }: CommentProps) => {
     <S.CommentListLayout>
       <I.ProfileIcon width={32} height={32} />
       <S.CommentForm>
-        <CommentInput />
+        <Input mode='comment' />
 
         {comments.map(comment => (
           <Comment key={comment.commentId} {...comment} />

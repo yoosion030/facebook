@@ -2,8 +2,8 @@ import { useRef, useContext } from 'react';
 import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
 
-const CommentInput = () => {
-  const { comments, addComment } = useContext(CommentContext);
+const Input = ({ mode, commentId = 0 }: { mode: string; commentId?: number }) => {
+  const { addReply, addComment } = useContext(CommentContext);
   const textarea = useRef<HTMLTextAreaElement>(null);
 
   const handleResizeHeight = () => {
@@ -25,18 +25,19 @@ const CommentInput = () => {
     event.preventDefault();
     textarea.current.value = '';
     textarea.current.style.height = '32px';
-    addComment(comment);
+    mode === 'reply' ? addReply(comment, commentId) : addComment(comment);
   };
 
   return (
-    <S.CommentInput
-      placeholder='댓글을 입력하세요...'
+    <S.Textarea
+      placeholder='답글을 입력하세요...'
       rows={1}
       onChange={handleResizeHeight}
       onKeyDown={handleKeyDown}
       ref={textarea}
+      mode={mode}
     />
   );
 };
 
-export default CommentInput;
+export default Input;
