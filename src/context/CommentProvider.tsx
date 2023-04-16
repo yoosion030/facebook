@@ -41,8 +41,9 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
     case 'ADD_REPLY': {
       const updatedComments = state.map(comment => {
         if (comment.commentId === action.commentId) {
+          const replies = state.filter(v => v.commentId === action.commentId)[0].replies ?? [];
           const updatedReply = {
-            replyId: comment.replies ? comment.replies.length : 0,
+            replyId: replies?.length ? replies[replies?.length - 1]?.replyId + 1 : 0,
             comment: action.reply,
           };
           return { ...comment, replies: [...(comment.replies || []), updatedReply] };
