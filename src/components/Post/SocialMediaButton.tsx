@@ -6,17 +6,19 @@ import setLocalStorageArray from 'utils/setLocalStorageArray';
 import { localStorageKeys } from 'constant/localStorageKeys';
 
 interface SocialMediaButtonProps {
-  id: string;
+  postId: string;
 }
 
-const SocialMediaButton = ({ id }: SocialMediaButtonProps) => {
-  const [isLike, setIsLike] = useState<boolean>(getStoredArray(localStorageKeys.like).includes(id));
+const SocialMediaButton = ({ postId }: SocialMediaButtonProps) => {
+  const [isLike, setIsLike] = useState<boolean>(
+    getStoredArray(localStorageKeys.like).includes(postId),
+  );
 
   const handleLike = () => {
     const likePosts = getStoredArray(localStorageKeys.like);
     const updatedLikePosts: string[] = isLike
-      ? likePosts.filter((v: string) => v !== id)
-      : [...likePosts, id];
+      ? likePosts.filter((v: string) => v !== postId)
+      : [...likePosts, postId];
 
     setLocalStorageArray(localStorageKeys.like, updatedLikePosts);
     setIsLike(!isLike);

@@ -5,11 +5,7 @@ import Comment from './Comment';
 import { CommentContext } from 'context/CommentProvider';
 import Input from 'components/Input';
 
-interface CommentProps {
-  id: string;
-}
-
-const CommentList = ({ id }: CommentProps) => {
+const CommentList = () => {
   const { comments } = useContext(CommentContext);
 
   return (

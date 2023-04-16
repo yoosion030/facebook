@@ -17,6 +17,7 @@ const Comment = ({ comment, commentId, replies = [] }: CommentProps) => {
   const handleDeleteComment = () => {
     deleteComment(commentId);
   };
+
   return (
     <>
       <S.CommentLayout>
