@@ -18,7 +18,7 @@ export const CommentLayout = styled.div`
 `;
 
 export const ContentSection = styled.section`
-  padding: 12px 12px;
+  padding: 12px;
   font-size: 15px;
   color: #050505;
   background-color: #f0f2f5;
