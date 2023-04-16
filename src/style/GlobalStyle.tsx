@@ -8,6 +8,7 @@ export const GlobalStyle = () => (
       body {
         font-family: 'Noto Sans KR', sans-serif;
         background-color: #f0f2f5;
+        overflow-x: hidden;
       }
 
       a {
