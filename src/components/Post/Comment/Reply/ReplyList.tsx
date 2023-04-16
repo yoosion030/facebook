@@ -11,7 +11,7 @@ const ReplyList = ({ commentId, replies }: ReplyListProps) => {
   return (
     <>
       {replies.map(reply => (
-        <Reply key={reply.replyId} {...reply} />
+        <Reply key={reply.replyId} {...reply} commentId={commentId} />
       ))}
       <Input mode='reply' commentId={commentId} />
     </>

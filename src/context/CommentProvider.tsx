@@ -15,6 +15,12 @@ type ActionType =
       reply: string;
       commentId: number;
       postId: string;
+    }
+  | {
+      type: 'DELETE_REPLY';
+      replyId: number;
+      commentId: number;
+      postId: string;
     };
 
 function reducer(state: CommentType[], action: ActionType): CommentType[] {
@@ -47,6 +53,19 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
       setLocalStorageArray(`${action.postId}`, updatedComments);
       return updatedComments;
     }
+
+    case 'DELETE_REPLY': {
+      const replies = [...state].filter(v => v.commentId === action.commentId)[0].replies;
+      const updatedComments = state.map(comment => {
+        if (comment.commentId === action.commentId) {
+          return { ...comment, replies: replies?.filter(v => v.replyId !== action.replyId) };
+        } else {
+          return comment;
+        }
+      });
+      setLocalStorageArray(`${action.postId}`, updatedComments);
+      return updatedComments;
+    }
   }
 }
 
@@ -55,6 +74,7 @@ interface ContextType {
   addComment: (comment: string) => void;
   deleteComment: (commentId: number) => void;
   addReply: (reply: string, commentId: number) => void;
+  deleteReply: (replyId: number, commentId: number) => void;
 }
 
 export const CommentContext = createContext<ContextType>({
@@ -67,6 +87,9 @@ export const CommentContext = createContext<ContextType>({
   },
   addReply: () => {
     console.log('addReply function is not defined');
+  },
+  deleteReply: () => {
+    console.log('deleteReply function is not defined');
   },
 });
 
@@ -85,6 +108,10 @@ function CommentProvider({ children, postId }: { children: React.ReactNode; post
     dispatch({ type: 'ADD_REPLY', reply, commentId, postId });
   };
 
+  const deleteReply = (replyId: number, commentId: number): void => {
+    dispatch({ type: 'DELETE_REPLY', replyId, postId, commentId });
+  };
+
   return (
     <CommentContext.Provider
       value={{
@@ -92,6 +119,7 @@ function CommentProvider({ children, postId }: { children: React.ReactNode; post
         addComment,
         deleteComment,
         addReply,
+        deleteReply,
       }}
     >
       {children}
