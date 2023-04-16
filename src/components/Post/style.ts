@@ -13,6 +13,7 @@ export const ContentSection = styled.section`
   font-size: 15px;
   color: #050505;
   line-height: 1.3;
+  white-space: pre-wrap;
 `;
 
 export const PostLayout = styled.div`
