@@ -36,7 +36,7 @@ const Input = ({ mode, commentId = 0 }: InputProps) => {
 
   return (
     <S.Textarea
-      placeholder='답글을 입력하세요...'
+      placeholder={`${mode === 'reply' ? '답글' : '댓글'}을 입력하세요. . .`}
       rows={1}
       onChange={handleResizeHeight}
       onKeyDown={handleKeyDown}

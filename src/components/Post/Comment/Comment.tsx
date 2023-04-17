@@ -14,6 +14,7 @@ interface CommentProps {
 const Comment = ({ comment, commentId, replies = [] }: CommentProps) => {
   const [isShowReply, setIsShowReply] = useState<boolean>(false);
   const { deleteComment } = useContext(CommentContext);
+
   const handleDeleteComment = () => {
     deleteComment(commentId);
   };
