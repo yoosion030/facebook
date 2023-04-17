@@ -107,7 +107,7 @@ function CommentProvider({ children, postId }: { children: React.ReactNode; post
     setInputFocus(!inputFocus);
   };
 
-  const [state, dispatch] = useReducer(reducer, getStoredArray(`${postId}`));
+  const [state, dispatch] = useReducer(reducer, getStoredArray<CommentType>(`${postId}`));
 
   const addComment = (comment: string): void => {
     dispatch({ type: 'ADD_COMMENT', comment, postId });

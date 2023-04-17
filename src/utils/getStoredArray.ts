@@ -1,12 +1,6 @@
-const getStoredArray = (key: string) => {
-  let storedArray = [];
-
+const getStoredArray = <T>(key: string): T[] => {
   const storedData = window.localStorage.getItem(key);
-  if (storedData !== null) {
-    storedArray = JSON.parse(storedData);
-  }
-
-  return storedArray;
+  return storedData ? JSON.parse(storedData) : [];
 };
 
 export default getStoredArray;

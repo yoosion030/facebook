@@ -17,7 +17,7 @@ const SocialMediaButton = ({ postId }: SocialMediaButtonProps) => {
   );
 
   const handleLike = () => {
-    const likePosts = getStoredArray(localStorageKeys.like);
+    const likePosts = getStoredArray<string>(localStorageKeys.like);
     const updatedLikePosts: string[] = isLike
       ? likePosts.filter((v: string) => v !== postId)
       : [...likePosts, postId];
