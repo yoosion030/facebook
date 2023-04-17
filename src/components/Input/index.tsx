@@ -1,4 +1,4 @@
-import { useRef, useContext } from 'react';
+import { useRef, useContext, useEffect } from 'react';
 import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
 import { InputModeType } from 'types/Input';
@@ -9,7 +9,7 @@ interface InputProps {
 }
 
 const Input = ({ mode, commentId = 0 }: InputProps) => {
-  const { addReply, addComment } = useContext(CommentContext);
+  const { inputFocus, addReply, addComment } = useContext(CommentContext);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleResizeHeight = () => {
@@ -33,6 +33,12 @@ const Input = ({ mode, commentId = 0 }: InputProps) => {
     textareaRef.current.style.height = '32px';
     mode === 'reply' ? addReply(comment, commentId) : addComment(comment);
   };
+
+  useEffect(() => {
+    if (textareaRef.current && inputFocus !== null) {
+      textareaRef.current.focus();
+    }
+  }, [inputFocus]);
 
   return (
     <S.Textarea

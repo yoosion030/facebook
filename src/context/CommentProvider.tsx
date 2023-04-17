@@ -1,4 +1,4 @@
-import React, { useReducer, createContext } from 'react';
+import React, { useReducer, createContext, useState } from 'react';
 import { CommentType } from 'types/Comment';
 import getStoredArray from 'utils/getStoredArray';
 import setLocalStorageArray from 'utils/setLocalStorageArray';
@@ -72,6 +72,8 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
 
 interface ContextType {
   comments: CommentType[];
+  inputFocus: boolean | null;
+  handleInputFocus: () => void;
   addComment: (comment: string) => void;
   deleteComment: (commentId: number) => void;
   addReply: (reply: string, commentId: number) => void;
@@ -80,6 +82,10 @@ interface ContextType {
 
 export const CommentContext = createContext<ContextType>({
   comments: [],
+  inputFocus: null,
+  handleInputFocus: () => {
+    console.log('handleInputFocus function is not defined');
+  },
   addComment: () => {
     console.log('addComment function is not defined');
   },
@@ -95,6 +101,12 @@ export const CommentContext = createContext<ContextType>({
 });
 
 function CommentProvider({ children, postId }: { children: React.ReactNode; postId: string }) {
+  const [inputFocus, setInputFocus] = useState<boolean | null>(null);
+
+  const handleInputFocus = () => {
+    setInputFocus(!inputFocus);
+  };
+
   const [state, dispatch] = useReducer(reducer, getStoredArray(`${postId}`));
 
   const addComment = (comment: string): void => {
@@ -117,6 +129,8 @@ function CommentProvider({ children, postId }: { children: React.ReactNode; post
     <CommentContext.Provider
       value={{
         comments: state,
+        inputFocus,
+        handleInputFocus,
         addComment,
         deleteComment,
         addReply,
