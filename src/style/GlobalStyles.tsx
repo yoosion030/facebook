@@ -1,7 +1,7 @@
 import { css, Global } from '@emotion/react';
 import emotionReset from 'emotion-reset';
 
-export const GlobalStyle = () => (
+export const GlobalStyles = () => (
   <Global
     styles={css`
       ${emotionReset}
@@ -39,10 +39,7 @@ export const GlobalStyle = () => (
         font-smoothing: antialiased;
       }
 
-      button {
-        font-family: 'Noto Sans KR', sans-serif;
-      }
-
+      button,
       input {
         font-family: 'Noto Sans KR', sans-serif;
       }
