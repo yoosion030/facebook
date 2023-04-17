@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
+import { InputModeType } from 'types/Input';
 
 interface TextareaProps {
-  mode: string;
+  mode: InputModeType;
 }
 
 export const Textarea = styled.textarea<TextareaProps>`
