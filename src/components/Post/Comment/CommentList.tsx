@@ -1,9 +1,8 @@
 import { useContext } from 'react';
 import * as I from 'assets';
 import * as S from './style';
-import Comment from './Comment';
 import { CommentContext } from 'context/CommentProvider';
-import Input from 'components/Input';
+import { Input, Comment } from 'components';
 
 const CommentList = () => {
   const { comments } = useContext(CommentContext);

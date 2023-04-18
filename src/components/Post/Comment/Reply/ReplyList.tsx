@@ -1,7 +1,6 @@
-import { ReplyCommentType } from 'types/Comment';
-import Reply from './Reply';
-import Input from 'components/Input';
 import * as S from './style';
+import { ReplyCommentType } from 'types/Comment';
+import { Input, Reply } from 'components';
 
 interface ReplyListProps {
   commentId: number;

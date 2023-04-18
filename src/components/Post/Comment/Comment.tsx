@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import * as I from 'assets';
 import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
-import ReplyList from './Reply/ReplyList';
+import { ReplyList } from 'components';
 import { ReplyCommentType } from 'types/Comment';
 
 interface CommentProps {

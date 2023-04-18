@@ -5,3 +5,6 @@ export { default as Content } from './Post/Content';
 export { default as Profile } from './Post/Profile';
 export { default as SocialMediaButton } from './Post/SocialMediaButton';
 export { default as CommentList } from './Post/Comment/CommentList';
+export { default as Comment } from './Post/Comment/Comment';
+export { default as Reply } from './Post/Comment/Reply/Reply';
+export { default as ReplyList } from './Post/Comment/Reply/ReplyList';
