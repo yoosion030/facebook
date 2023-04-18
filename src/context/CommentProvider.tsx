@@ -1,7 +1,6 @@
 import React, { useReducer, createContext, useState } from 'react';
 import { CommentType } from 'types/Comment';
-import getStoredArray from 'utils/getStoredArray';
-import setLocalStorageArray from 'utils/setLocalStorageArray';
+import { getStoredArray, setLocalStorageArray } from 'utils';
 
 type ActionType =
   | {
@@ -26,10 +25,11 @@ type ActionType =
 function reducer(state: CommentType[], action: ActionType): CommentType[] {
   switch (action.type) {
     case 'ADD_COMMENT': {
-      const commentId = state[0] ? state[0].commentId + 1 : 0;
-      const addData = [{ comment: action.comment, commentId, replies: [] }, ...state];
-      setLocalStorageArray(`${action.postId}`, addData);
-      return addData;
+      const commentId = state.length ? state[0].commentId + 1 : 0;
+      const newComment = { comment: action.comment, commentId, replies: [] };
+      const updatedComments = [newComment, ...state];
+      setLocalStorageArray(`${action.postId}`, updatedComments);
+      return updatedComments;
     }
 
     case 'DELETE_COMMENT': {
@@ -39,31 +39,44 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
     }
 
     case 'ADD_REPLY': {
-      const updatedComments = state.map(comment => {
-        if (comment.commentId === action.commentId) {
-          const replies = state.filter(v => v.commentId === action.commentId)[0].replies ?? [];
-          const updatedReply = {
-            replyId: replies?.length ? replies[replies?.length - 1]?.replyId + 1 : 0,
+      const targetComment = state.find(comment => comment.commentId === action.commentId);
+      if (!targetComment) return state;
+
+      const updatedComment = {
+        ...targetComment,
+        replies: [
+          ...(targetComment.replies || []),
+          {
+            replyId: (targetComment.replies?.length || 0) + 1,
             comment: action.reply,
-          };
-          return { ...comment, replies: [...(comment.replies || []), updatedReply] };
-        } else {
-          return comment;
-        }
-      });
+          },
+        ],
+      };
+
+      const updatedComments = state.map(comment =>
+        comment.commentId === action.commentId ? updatedComment : comment,
+      );
+
       setLocalStorageArray(`${action.postId}`, updatedComments);
       return updatedComments;
     }
 
     case 'DELETE_REPLY': {
-      const replies = [...state].filter(v => v.commentId === action.commentId)[0].replies;
+      const targetComment = state.find(comment => comment.commentId === action.commentId);
+      if (!targetComment) return state;
+
+      const updatedReplies = targetComment.replies?.filter(
+        reply => reply.replyId !== action.replyId,
+      );
+
       const updatedComments = state.map(comment => {
         if (comment.commentId === action.commentId) {
-          return { ...comment, replies: replies?.filter(v => v.replyId !== action.replyId) };
+          return { ...comment, replies: updatedReplies };
         } else {
           return comment;
         }
       });
+
       setLocalStorageArray(`${action.postId}`, updatedComments);
       return updatedComments;
     }
