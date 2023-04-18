@@ -24,7 +24,7 @@ export const PostLayout = styled.div`
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.17);
 `;
 
-export const ProtileSection = styled.section`
+export const ProfileSection = styled.section`
   display: flex;
   gap: 10px;
   height: 40px;

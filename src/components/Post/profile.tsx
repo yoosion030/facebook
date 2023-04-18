@@ -5,15 +5,16 @@ interface ProfileProps {
   name: string;
   createdAt: string;
 }
+
 const Profile = ({ profileImage, name, createdAt }: ProfileProps) => {
   return (
-    <S.ProtileSection>
+    <S.ProfileSection>
       <img src={profileImage} />
       <div>
         <S.Name>{name}</S.Name>
         <S.Date>{createdAt}</S.Date>
       </div>
-    </S.ProtileSection>
+    </S.ProfileSection>
   );
 };
 
