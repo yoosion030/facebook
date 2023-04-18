@@ -1,8 +1,7 @@
 import { useContext, useState } from 'react';
 import * as I from 'assets';
 import * as S from './style';
-import getStoredArray from 'utils/getStoredArray';
-import setLocalStorageArray from 'utils/setLocalStorageArray';
+import { getStoredArray, setLocalStorageArray } from 'utils';
 import { localStorageKeys } from 'constant/localStorageKeys';
 import { CommentContext } from 'context/CommentProvider';
 
@@ -19,7 +18,7 @@ const SocialMediaButton = ({ postId }: SocialMediaButtonProps) => {
   const handleLike = () => {
     const likePosts = getStoredArray<string>(localStorageKeys.like);
     const updatedLikePosts: string[] = isLike
-      ? likePosts.filter((v: string) => v !== postId)
+      ? likePosts.filter(postId => postId !== postId)
       : [...likePosts, postId];
 
     setLocalStorageArray(localStorageKeys.like, updatedLikePosts);
@@ -36,7 +35,7 @@ const SocialMediaButton = ({ postId }: SocialMediaButtonProps) => {
         ) : (
           <I.LikeIcon />
         )}
-        <p style={{ color: isLike ? '#065fd4' : '#65676b' }}>좋아요</p>
+        <p style={{ color: isLike ? `#065fd4` : `#65676b` }}>좋아요</p>
       </S.IconBox>
       <S.IconBox onClick={handleInputFocus}>
         <I.CommentIcon />
