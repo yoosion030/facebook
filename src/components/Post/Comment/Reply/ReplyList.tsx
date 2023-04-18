@@ -1,6 +1,6 @@
 import * as S from './style';
 import { ReplyCommentType } from 'types/Comment';
-import { Input, Reply } from 'components';
+import { Textarea, Reply } from 'components';
 
 interface ReplyListProps {
   commentId: number;
@@ -13,7 +13,7 @@ const ReplyList = ({ commentId, replies }: ReplyListProps) => {
       {replies.map(reply => (
         <Reply key={reply.replyId} {...reply} commentId={commentId} />
       ))}
-      <Input mode='reply' commentId={commentId} />
+      <Textarea mode='reply' commentId={commentId} />
     </S.ReplyAnimation>
   );
 };

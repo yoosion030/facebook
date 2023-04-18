@@ -10,7 +10,7 @@ interface SocialMediaButtonProps {
 }
 
 const SocialMediaButton = ({ postId }: SocialMediaButtonProps) => {
-  const { handleInputFocus } = useContext(CommentContext);
+  const { handleTextareaFocus } = useContext(CommentContext);
   const [isLike, setIsLike] = useState<boolean>(
     getStoredArray(localStorageKeys.like).includes(postId),
   );
@@ -37,7 +37,7 @@ const SocialMediaButton = ({ postId }: SocialMediaButtonProps) => {
         )}
         <p style={{ color: isLike ? `#065fd4` : `#65676b` }}>좋아요</p>
       </S.IconBox>
-      <S.IconBox onClick={handleInputFocus}>
+      <S.IconBox onClick={handleTextareaFocus}>
         <I.CommentIcon />
         <p>댓글 달기</p>
       </S.IconBox>

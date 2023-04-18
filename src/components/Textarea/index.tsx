@@ -1,15 +1,15 @@
 import { useRef, useContext, useEffect } from 'react';
 import * as S from './style';
 import { CommentContext } from 'context/CommentProvider';
-import { InputModeType } from 'types/Input';
+import { TextareaModeType } from 'types/Textarea';
 
-interface InputProps {
-  mode: InputModeType;
+interface TextAreaProps {
+  mode: TextareaModeType;
   commentId?: number;
 }
 
-const Input = ({ mode, commentId = 0 }: InputProps) => {
-  const { inputFocus, addReply, addComment } = useContext(CommentContext);
+const TextArea = ({ mode, commentId = 0 }: TextAreaProps) => {
+  const { textareaFocus, addReply, addComment } = useContext(CommentContext);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleResizeHeight = () => {
@@ -35,10 +35,10 @@ const Input = ({ mode, commentId = 0 }: InputProps) => {
   };
 
   useEffect(() => {
-    if (textareaRef.current && inputFocus !== null) {
+    if (textareaRef.current && textareaFocus !== null) {
       textareaRef.current.focus();
     }
-  }, [inputFocus]);
+  }, [textareaFocus]);
 
   return (
     <S.Textarea
@@ -52,4 +52,4 @@ const Input = ({ mode, commentId = 0 }: InputProps) => {
   );
 };
 
-export default Input;
+export default TextArea;
