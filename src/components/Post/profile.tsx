@@ -9,7 +9,7 @@ interface ProfileProps {
 const Profile = ({ profileImage, name, createdAt }: ProfileProps) => {
   return (
     <S.ProfileSection>
-      <img src={profileImage} />
+      <img src={profileImage} alt='' />
       <div>
         <S.Name>{name}</S.Name>
         <S.Date>{createdAt}</S.Date>
