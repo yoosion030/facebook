@@ -127,7 +127,7 @@ const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
   <br />
   <div markdown="1">
 
-댓글을 추가하고 삭제하는 것을 반복하다가 갑자기 동시에 두 개의 댓글이 삭제되는 현상을 발견하였습니다. 찾아보니 key를 `commentId로` 설정하였는데 `commentId가` 중복되어 발생한 문제였습니다. 추가할 때 `commetId를` 댓글 배열의 길이로 설정하게 하였는데 이렇게 하게 되면 삭제 후 다시 추가할 때 배열 길이가 원상 복귀된 것이니 중복 key가 발생하였습니다.
+댓글을 추가하고 삭제하는 것을 반복하다가 갑자기 동시에 두 개의 댓글이 삭제되는 현상을 발견하였습니다. 찾아보니 key를 `commentId`로 설정하였는데 `commentId`가 중복되어 발생한 문제였습니다. 추가할 때 `commetId`를 댓글 배열의 길이로 설정하게 하였는데 이렇게 하게 되면 삭제 후 다시 추가할 때 배열 길이가 원상 복귀된 것이니 중복 key가 발생하였습니다.
 
 - Before
 
