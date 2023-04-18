@@ -49,28 +49,34 @@ $ npm start
 │  └─ index.html
 ├─ src
 │  ├─ assets
-│  ├─ components
+│  │  ├─ Common
+│  │  ├─ Header
+│  │  └─ SocialMediaButton
 │  ├─ components
 │  │  ├─ Header
-│  │  ├─  └─ MainLayout.ts
-│  │  ├─ Input
-│  │  ├─  └─ OrderTable.tsx
-│  │  ├─  └─ Pagenation.tsx
+│  │  ├─ Textarea
 │  │  ├─ Post
-│  │  ├─   └─ Comment
-│  │  │    └─   └─ Reply
+│  │  │    ├─ Comment
+│  │  │    │   └─ Reply
+│  │  │    ├─  Content
+│  │  │    ├─  Profile
+│  │  └─   └─  SocialMediaButton
 │  ├─ constant
-│  │  └─ page.ts
+│  │  └─ localStorageKeys.ts
 │  ├─ context
-│  │  └─ HomePage.tsx
+│  │  └─ CommentProvider.tsx
 │  ├─ style
-│  │  └─ loader
+│  │  └─ GlobalStyles
 │  ├─ types
-│  │  └─ GlobalStyles.tsx
+│  │  ├─ Comment
+│  │  ├─ Post
+│  │  └─ Textarea
 │  ├─ utils
+│  │  ├─ getStoredArray
+│  │  ├─ setLocalStorageArray
 │  │  └─ index.ts
-│  ├─ index.tsx
-└─ └─ App.tsx
+│  ├─ App.tsx
+└─ └─ index.tsx
 ```
 
 ### 컴포넌트 구조
