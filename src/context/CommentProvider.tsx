@@ -46,7 +46,10 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
       const targetComment = state.find(comment => comment.commentId === action.commentId);
       if (!targetComment) return state;
 
-      const maxReplyId = Math.max(...(targetComment.replies?.map(reply => reply.replyId) || [0]));
+      const maxReplyId = Math.max(
+        ...(targetComment.replies?.map(reply => reply.replyId) || [0]),
+        0,
+      );
       const newReply = {
         replyId: maxReplyId + 1,
         comment: action.reply,

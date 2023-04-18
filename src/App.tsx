@@ -4,7 +4,7 @@ import { PostType } from 'types/Post';
 function App() {
   const posts: PostType[] = [
     {
-      id: 0,
+      id: 1,
       profileImage:
         'https://image.rocketpunch.com/company/174836/2pmlab_logo_1658207689.png?s=40x40&t=inside',
       name: '오후두시랩',
@@ -15,7 +15,7 @@ function App() {
       createdAt: '4월 3일 오전 12:36',
     },
     {
-      id: 1,
+      id: 2,
       profileImage:
         'https://image.rocketpunch.com/company/174836/2pmlab_logo_1658207689.png?s=40x40&t=inside',
       name: '오후두시랩',
@@ -26,7 +26,7 @@ function App() {
     },
 
     {
-      id: 2,
+      id: 3,
       profileImage:
         'https://image.rocketpunch.com/company/174836/2pmlab_logo_1658207689.png?s=40x40&t=inside',
       name: '오후두시랩',
