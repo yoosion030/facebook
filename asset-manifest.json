@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/facebook/static/js/main.5769b64e.js",
+    "main.js": "/facebook/static/js/main.a5332bcb.js",
     "index.html": "/facebook/index.html",
-    "main.5769b64e.js.map": "/facebook/static/js/main.5769b64e.js.map"
+    "main.a5332bcb.js.map": "/facebook/static/js/main.a5332bcb.js.map"
   },
   "entrypoints": [
-    "static/js/main.5769b64e.js"
+    "static/js/main.a5332bcb.js"
   ]
 }
