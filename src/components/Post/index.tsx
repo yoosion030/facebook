@@ -11,16 +11,13 @@ const Post = ({ posts }: PostProps) => {
   return (
     <S.PageLayout>
       {posts.map(post => {
-        const stringId = post.id.toString();
+        const { id, profileImage, name, createdAt, content, contentImage } = post;
+        const stringId = id.toString();
         return (
-          <CommentProvider postId={stringId} key={post.id}>
+          <CommentProvider postId={stringId} key={id}>
             <S.PostLayout>
-              <Profile
-                profileImage={post.profileImage}
-                name={post.name}
-                createdAt={post.createdAt}
-              />
-              <Content content={post.content} contentImage={post.contentImage ?? ''} />
+              <Profile profileImage={profileImage} name={name} createdAt={createdAt} />
+              <Content content={content} contentImage={contentImage ?? ''} />
               <SocialMediaButton postId={stringId} />
               <CommentList />
             </S.PostLayout>
