@@ -25,8 +25,12 @@ type ActionType =
 function reducer(state: CommentType[], action: ActionType): CommentType[] {
   switch (action.type) {
     case 'ADD_COMMENT': {
-      const commentId = state.length ? state[0].commentId + 1 : 0;
-      const newComment = { comment: action.comment, commentId, replies: [] };
+      const maxCommentId = Math.max(...state.map(comment => comment.commentId), 0);
+      const newComment = {
+        comment: action.comment,
+        commentId: maxCommentId + 1,
+        replies: [],
+      };
       const updatedComments = [newComment, ...state];
       setLocalStorageArray(`${action.postId}`, updatedComments);
       return updatedComments;
@@ -42,15 +46,15 @@ function reducer(state: CommentType[], action: ActionType): CommentType[] {
       const targetComment = state.find(comment => comment.commentId === action.commentId);
       if (!targetComment) return state;
 
+      const maxReplyId = Math.max(...(targetComment.replies?.map(reply => reply.replyId) || [0]));
+      const newReply = {
+        replyId: maxReplyId + 1,
+        comment: action.reply,
+      };
+
       const updatedComment = {
         ...targetComment,
-        replies: [
-          ...(targetComment.replies || []),
-          {
-            replyId: (targetComment.replies?.length || 0) + 1,
-            comment: action.reply,
-          },
-        ],
+        replies: [...(targetComment.replies || []), newReply],
       };
 
       const updatedComments = state.map(comment =>
