@@ -169,9 +169,9 @@ const newComment = {
 
 **(2) 네이밍 컨벤션**
 
-| Type            | Description   |
-| --------------- | ------------- |
-| 컴포넌트 폴더명 | 대문자로 시작 |
-| 대표 폴더명     | 소문자로 시작 |
-| 파일 이름       | 대문자로 시작 |
-| 함수            | camel case    |
+| Type            | Description |
+| --------------- | ----------- |
+| 컴포넌트 폴더명 | pascal case |
+| 대표 폴더명     | lower case  |
+| 파일 이름       | pascal case |
+| 함수            | camel case  |
