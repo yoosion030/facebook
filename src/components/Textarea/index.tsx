@@ -35,9 +35,8 @@ const TextArea = ({ mode, commentId = 0 }: TextAreaProps) => {
   };
 
   useEffect(() => {
-    if (textareaRef.current && textareaFocus !== null) {
+    if (mode === 'comment' && textareaRef.current && textareaFocus !== null)
       textareaRef.current.focus();
-    }
   }, [textareaFocus]);
 
   return (
