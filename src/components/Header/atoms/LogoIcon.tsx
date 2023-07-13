@@ -1,4 +1,4 @@
-const Logo = () => (
+const LogoIcon = () => (
   <svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 14222 14222'>
     <circle cx='7111' cy='7112' r='7111' fill='#1977f3' />
     <path
@@ -8,4 +8,4 @@ const Logo = () => (
   </svg>
 );
 
-export default Logo;
+export default LogoIcon;
